@@ -1,14 +1,19 @@
 # Use Java 17
 FROM eclipse-temurin:17-jdk-alpine
 
-# Set working directory
 WORKDIR /app
 
-# Copy all files
+# Copy project files
 COPY . .
 
-# Build the app
+# Give permission to mvnw (important for Linux)
+RUN chmod +x mvnw
+
+# Build the project
 RUN ./mvnw clean package -DskipTests
 
-# Run the jar
-CMD ["java", "-jar", "target/*.jar"]
+# Expose port (Render uses PORT env)
+EXPOSE 10000
+
+# Run the app
+CMD ["sh", "-c", "java -jar target/*.jar"]
