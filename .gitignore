@@ -31,3 +31,13 @@ build/
 
 ### VS Code ###
 .vscode/
+
+
+# OS
+.DS_Store
+
+# IDE
+.idea/
+
+# Node
+node_modules/
