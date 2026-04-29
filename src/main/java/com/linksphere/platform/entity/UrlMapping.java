@@ -13,10 +13,15 @@ public class UrlMapping {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String originalUrl;
 
-    @Column(unique = true)
+    @Column(nullable = false, unique = true)
     private String shortCode;
 
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now(); // ✅ auto set
+
+    private Long clickCount = 0L; // 🔥 NEW: analytics
+
+    private LocalDateTime expiryDate; // 🔥 NEW: expiry
 }
